@@ -1,6 +1,6 @@
-6fc8e61a062c0c7146550b70676b3081 *DESCRIPTION
+11c00acc176c602edc34509c1c19f4a9 *DESCRIPTION
 5479e6ec9b0b79de9f74c9e634e2c9f8 *NAMESPACE
-49d8018d7e2fd40fb1b7894efa90e141 *NEWS.md
+045a8d4fee5c45ae13db482ca171860f *NEWS.md
 91f5497adf699ed29cd1dbf266948350 *R/RcppExports.R
 e2b3cc96961e002aec1e61621865e267 *R/catch-routine-registration.R
 c69bd7a705f1272e599e9bdf2a69f186 *R/catsim-package.R
@@ -8,8 +8,8 @@ c69bd7a705f1272e599e9bdf2a69f186 *R/catsim-package.R
 42a3ac0ef9a895621eedd67ca2cc2484 *R/data.R
 2aaae7bc8f22f0fada3e1ef6629bd2c6 *R/similarity.R
 4b65c43b0a8cdaceecc20f9ad7b2f930 *R/utils.R
-00d1e02917a2d9d26dfd775d639749dd *README.md
-3f4c2853741a88913949bfa1a9fb98e8 *build/partial.rdb
+94e30812eaa48fc2a824f08a7a354b93 *README.md
+d7582725763466c9e9bd6339508f179a *build/partial.rdb
 ea6e5f88e49196daa7e26d6411ce8daf *build/vignette.rds
 a3f420e60d4467f202fd9a3762aa6336 *data/besag.rda
 1b8ff9763babe9e6f08a7748cfc662a3 *data/hoffmanphantom.rda
@@ -28,7 +28,7 @@ d7fea1917977562c30afd284a0ea2ebb *man/gini.Rd
 b5a86d2b3624e14df221230b42c37785 *man/hoffmanphantom.Rd
 795ebf3fe638a80045cd5fa429cea25a *man/rand.Rd
 3d1740756327b7517cbd12bcfb29ac55 *src/RcppExports.cpp
-70e6059897269cfeb9e10d83a776617b *src/internalfunction.cpp
+7883260098ea8a4179ff2817ccffd0f1 *src/internalfunction.cpp
 45379c8640081414f3c0603ad242421b *src/internalfunction.h
 5b78497dd85d000953bcd11554cfd8e6 *src/test-example.cpp
 c2cb0c30e10da611f9fbe56aea52f7a9 *src/test-runner.cpp
