@@ -1,7 +1,7 @@
 Package: catsim
 Type: Package
 Title: Binary and Categorical Image Similarity Index
-Version: 0.2.1
+Version: 0.2.3
 Authors@R: c(person(c("Geoffrey", "Thompson"),email="gzthompson@gmail.com",
     role = c("aut", "cre"), comment = c(ORCID = '0000-0003-2436-8822')))	
 Description: Computes a structural similarity metric (after the style of
@@ -15,16 +15,16 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: Rcpp
-RoxygenNote: 7.1.0
-URL: http://github.com/gzt/catsim, https://gzt.github.io/catsim
+RoxygenNote: 7.1.1
+URL: https://github.com/gzt/catsim, https://gzt.github.io/catsim/
 BugReports: https://github.com/gzt/catsim/issues
 LinkingTo: Rcpp, testthat
 Suggests: testthat, covr, knitr, rmarkdown
 VignetteBuilder: knitr
 Depends: R (>= 2.10)
 NeedsCompilation: yes
-Packaged: 2020-05-06 03:50:15 UTC; gzt
+Packaged: 2020-12-08 16:55:04 UTC; gzt
 Author: Geoffrey Thompson [aut, cre] (<https://orcid.org/0000-0003-2436-8822>)
 Maintainer: Geoffrey Thompson <gzthompson@gmail.com>
 Repository: CRAN
-Date/Publication: 2020-05-06 12:40:12 UTC
+Date/Publication: 2020-12-16 00:10:02 UTC

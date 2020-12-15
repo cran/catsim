@@ -1,3 +1,12 @@
+# catsim 0.2.3
+* Minor update to fix the last URLs. Arxiv links in bibliographic 
+expansion expand to http rather than https, so this has to be 
+fixed by specifying the URL in the .bib file.
+
+# catsim 0.2.2
+* Fix update to C++ tests in testthat test suite. This was causing an LTO error.
+* Update some URLs to use https instead of http.
+
 # catsim 0.2.1
 * Fix some cosmetic issues in README.Rmd
 * Fix a spurious warning in compiled code about an unused variable. 
