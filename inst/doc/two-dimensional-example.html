@@ -14,90 +14,103 @@
 
 <title>Two-Dimensional Examples of CatSIM</title>
 
-<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
-// v0.0.1
-// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
-
-document.addEventListener('DOMContentLoaded', function() {
-  const codeList = document.getElementsByClassName("sourceCode");
-  for (var i = 0; i < codeList.length; i++) {
-    var linkList = codeList[i].getElementsByTagName('a');
-    for (var j = 0; j < linkList.length; j++) {
-      if (linkList[j].innerHTML === "") {
-        linkList[j].setAttribute('aria-hidden', 'true');
-      }
-    }
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
   }
 });
 </script>
 
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
 
-<style type="text/css">code{white-space: pre;}</style>
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
-  { counter-reset: source-line 0; }
+{ counter-reset: source-line 0; }
 pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
+{ position: relative; left: -4em; counter-increment: source-line; }
 pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
 <script>
 // apply pandoc div.sourceCode style to pre.sourceCode instead
@@ -106,13 +119,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -122,6 +142,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </script>
 
 
+
+<style type="text/css">
+
+div.csl-bib-body { }
+div.csl-entry {
+clear: both;
+}
+.hanging div.csl-entry {
+margin-left:2em;
+text-indent:-2em;
+}
+div.csl-left-margin {
+min-width:2em;
+float:left;
+}
+div.csl-right-inline {
+margin-left:2em;
+padding-left:1em;
+}
+div.csl-indent {
+margin-left: 2em;
+}
+</style>
 
 <style type="text/css">body {
 background-color: #fff;
@@ -319,160 +362,256 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(catsim)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(catsim)</span></code></pre></div>
 <div id="introduction-to-catsim" class="section level2">
 <h2>Introduction to CatSIM</h2>
-<p>The <strong>Cat</strong>egorical <strong>S</strong>tructural Similarity <strong>I</strong>mage <strong>M</strong>etric, or <strong>CatSIM</strong>, provides a similarity metric for binary or multinary images or maps after the style of <a href="https://en.wikipedia.org/wiki/Structural_similarity">MS-SSIM</a>. That is, CatSIM compares two different sets of labels of pixels (voxels) in 2-D (or 3-D) images in an image. It attempts to assess similarity between two images in a way that accounts for the structural features of the image rather than a per-pixel discrepancy, ideally doing so similarly to human assessments of similarity. The package implements the methods described in <span class="citation">(<span class="citeproc-not-found" data-reference-id="thompson2020catsim"><strong>???</strong></span>)</span>.</p>
+<p>The <strong>Cat</strong>egorical <strong>S</strong>tructural
+Similarity <strong>I</strong>mage <strong>M</strong>etric, or
+<strong>CatSIM</strong>, provides a similarity metric for binary or
+multinary images or maps after the style of <a href="https://en.wikipedia.org/wiki/Structural_similarity">MS-SSIM</a>.
+That is, CatSIM compares two different sets of labels of pixels (voxels)
+in 2-D (or 3-D) images in an image. It attempts to assess similarity
+between two images in a way that accounts for the structural features of
+the image rather than a per-pixel discrepancy, ideally doing so
+similarly to human assessments of similarity. The package implements the
+methods described in <span class="citation">(<strong>thompson2020catsim?</strong>)</span>.</p>
 </div>
 <div id="how-catsim-works" class="section level2">
 <h2>How CatSIM works</h2>
-<p>CatSIM computes a set of similarity metrics on a sliding window in the images, then averages and combines them. In then downsamples the images and repeats the process. Finally, it combines the measures from the different levels together. It can use a variety of different similarity metrics inside of it depending on the specific meaning of the labels in the image. By default, it uses <a href="https://en.wikipedia.org/wiki/Cohen%27s_kappa">Cohen’s kappa</a> inside it as its main comparison between the two images. However, there are several other options available which are more appropriate in some contexts.</p>
+<p>CatSIM computes a set of similarity metrics on a sliding window in
+the images, then averages and combines them. In then downsamples the
+images and repeats the process. Finally, it combines the measures from
+the different levels together. It can use a variety of different
+similarity metrics inside of it depending on the specific meaning of the
+labels in the image. By default, it uses <a href="https://en.wikipedia.org/wiki/Cohen%27s_kappa">Cohen’s kappa</a>
+inside it as its main comparison between the two images. However, there
+are several other options available which are more appropriate in some
+contexts.</p>
 </div>
 <div id="constructing-a-binary-illustration" class="section level2">
 <h2>Constructing a binary illustration</h2>
-<p>Besag <span class="citation">(1986)</span> presents a <span class="math inline">\(100 \times 88\)</span> two-dimensional two-class image with “intentionally awkward” features. Here we blow it up to three times its size and create two distorted versions to demonstrate how the method works.</p>
-<p>The first distorted version is shifting the body of the figure over 6 pixels. The second distorted version is adding salt-and-pepper noise so the error rate matches the difference between original and the shifted version.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">set.seed</span>(<span class="dv">20200308</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a>multfactor &lt;-<span class="st"> </span><span class="dv">3</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>onesmat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span>, multfactor, multfactor)</span>
-<span id="cb2-5"><a href="#cb2-5"></a>exmat &lt;-<span class="st"> </span>(besag <span class="op">%%</span><span class="st"> </span><span class="dv">2</span>) <span class="co">### converting to binary - it&#39;s ones and twos</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a></span>
-<span id="cb2-7"><a href="#cb2-7"></a>bigmat &lt;-<span class="st"> </span>exmat <span class="op">%x%</span><span class="st"> </span>onesmat</span>
-<span id="cb2-8"><a href="#cb2-8"></a></span>
-<span id="cb2-9"><a href="#cb2-9"></a>bigmat &lt;-<span class="st"> </span>exmat <span class="op">%x%</span><span class="st"> </span>onesmat</span>
-<span id="cb2-10"><a href="#cb2-10"></a>shift &lt;-<span class="st"> </span><span class="dv">6</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>basemat &lt;-<span class="st"> </span>bigmat[<span class="dv">1</span><span class="op">:</span>(<span class="dv">96</span> <span class="op">*</span><span class="st"> </span>multfactor), <span class="dv">1</span><span class="op">:</span>(<span class="dv">84</span> <span class="op">*</span><span class="st"> </span>multfactor)]</span>
-<span id="cb2-12"><a href="#cb2-12"></a>shiftmat &lt;-<span class="st"> </span>bigmat[(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>shift)<span class="op">:</span>(<span class="dv">96</span> <span class="op">*</span><span class="st"> </span>multfactor <span class="op">+</span><span class="st"> </span>shift), <span class="dv">1</span><span class="op">:</span>(<span class="dv">84</span> <span class="op">*</span><span class="st"> </span>multfactor)]</span>
-<span id="cb2-13"><a href="#cb2-13"></a>acc &lt;-<span class="st"> </span><span class="kw">mean</span>(basemat <span class="op">==</span><span class="st"> </span>shiftmat)</span>
-<span id="cb2-14"><a href="#cb2-14"></a>errmat &lt;-<span class="st"> </span>(<span class="kw">matrix</span>(</span>
-<span id="cb2-15"><a href="#cb2-15"></a>  <span class="kw">sample</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">96</span> <span class="op">*</span><span class="st"> </span><span class="dv">84</span> <span class="op">*</span><span class="st"> </span>(multfactor<span class="op">^</span><span class="dv">2</span>),</span>
-<span id="cb2-16"><a href="#cb2-16"></a>    <span class="dt">replace =</span> <span class="ot">TRUE</span>, <span class="dt">prob =</span> <span class="kw">c</span>(acc, ((<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>acc)))</span>
-<span id="cb2-17"><a href="#cb2-17"></a>  ),</span>
-<span id="cb2-18"><a href="#cb2-18"></a>  (<span class="dv">96</span> <span class="op">*</span><span class="st"> </span>multfactor), (<span class="dv">84</span> <span class="op">*</span><span class="st"> </span>multfactor)</span>
-<span id="cb2-19"><a href="#cb2-19"></a>) <span class="op">+</span><span class="st"> </span>basemat) <span class="op">%%</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb2-20"><a href="#cb2-20"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
-<span id="cb2-21"><a href="#cb2-21"></a><span class="kw">image</span>(basemat, <span class="dt">xaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">yaxt =</span> <span class="st">&quot;n&quot;</span>); <span class="kw">grid</span>(<span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">nx =</span> <span class="dv">6</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>)</span>
-<span id="cb2-22"><a href="#cb2-22"></a><span class="kw">image</span>(shiftmat, <span class="dt">xaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">yaxt =</span> <span class="st">&quot;n&quot;</span>); <span class="kw">grid</span>(<span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">nx =</span> <span class="dv">6</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>)</span>
-<span id="cb2-23"><a href="#cb2-23"></a><span class="kw">image</span>(errmat, <span class="dt">xaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">yaxt =</span> <span class="st">&quot;n&quot;</span>); <span class="kw">grid</span>(<span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">nx =</span> <span class="dv">6</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
-<p><img src="data:image/png;base64,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" /><!-- --></p>
-<p>Here we have the original, the shifted version, and the salt-and-pepper noise. We argue that though the proportion of pixels that differ from the base image are approximately the same for the two, an image similarity metric should say the shift is better.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">catsim</span>(basemat, shiftmat)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt; [1] 0.5648881</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="kw">catsim</span>(basemat, errmat)</span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; [1] 0.4614073</span></span></code></pre></div>
-<p>As we might desire, the <code>catsim</code> metric judges the shift to be more like the original than the salt-and-pepper noise.</p>
-<p>Because this is a two-class image, you can consider using the Jaccard index as the metric inside it with similar results:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">catsim</span>(basemat, shiftmat, <span class="dt">method =</span> <span class="st">&quot;Jaccard&quot;</span>)</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt; [1] 0.5647088</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="kw">catsim</span>(basemat, errmat, <span class="dt">method =</span> <span class="st">&quot;Jaccard&quot;</span>)</span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt; [1] 0.52999</span></span></code></pre></div>
+<p>Besag <span class="citation">(1986)</span> presents a <span class="math inline">\(100 \times 88\)</span> two-dimensional two-class
+image with “intentionally awkward” features. Here we blow it up to three
+times its size and create two distorted versions to demonstrate how the
+method works.</p>
+<p>The first distorted version is shifting the body of the figure over 6
+pixels. The second distorted version is adding salt-and-pepper noise so
+the error rate matches the difference between original and the shifted
+version.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20200308</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>multfactor <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>onesmat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span>, multfactor, multfactor)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>exmat <span class="ot">&lt;-</span> (besag <span class="sc">%%</span> <span class="dv">2</span>) <span class="do">### converting to binary - it&#39;s ones and twos</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>bigmat <span class="ot">&lt;-</span> exmat <span class="sc">%x%</span> onesmat</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>bigmat <span class="ot">&lt;-</span> exmat <span class="sc">%x%</span> onesmat</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>shift <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>basemat <span class="ot">&lt;-</span> bigmat[<span class="dv">1</span><span class="sc">:</span>(<span class="dv">96</span> <span class="sc">*</span> multfactor), <span class="dv">1</span><span class="sc">:</span>(<span class="dv">84</span> <span class="sc">*</span> multfactor)]</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>shiftmat <span class="ot">&lt;-</span> bigmat[(<span class="dv">1</span> <span class="sc">+</span> shift)<span class="sc">:</span>(<span class="dv">96</span> <span class="sc">*</span> multfactor <span class="sc">+</span> shift), <span class="dv">1</span><span class="sc">:</span>(<span class="dv">84</span> <span class="sc">*</span> multfactor)]</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>acc <span class="ot">&lt;-</span> <span class="fu">mean</span>(basemat <span class="sc">==</span> shiftmat)</span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>errmat <span class="ot">&lt;-</span> (<span class="fu">matrix</span>(</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>  <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="dv">96</span> <span class="sc">*</span> <span class="dv">84</span> <span class="sc">*</span> (multfactor<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>    <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(acc, ((<span class="dv">1</span> <span class="sc">-</span> acc)))</span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>  ),</span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a>  (<span class="dv">96</span> <span class="sc">*</span> multfactor), (<span class="dv">84</span> <span class="sc">*</span> multfactor)</span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a>) <span class="sc">+</span> basemat) <span class="sc">%%</span> <span class="dv">2</span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="fu">image</span>(basemat, <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="at">yaxt =</span> <span class="st">&quot;n&quot;</span>); <span class="fu">grid</span>(<span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">nx =</span> <span class="dv">6</span>, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="fu">image</span>(shiftmat, <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="at">yaxt =</span> <span class="st">&quot;n&quot;</span>); <span class="fu">grid</span>(<span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">nx =</span> <span class="dv">6</span>, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a><span class="fu">image</span>(errmat, <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="at">yaxt =</span> <span class="st">&quot;n&quot;</span>); <span class="fu">grid</span>(<span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">nx =</span> <span class="dv">6</span>, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>Here we have the original, the shifted version, and the
+salt-and-pepper noise. We argue that though the proportion of pixels
+that differ from the base image are approximately the same for the two,
+an image similarity metric should say the shift is better.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">catsim</span>(basemat, shiftmat)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co">#&gt; [1] 0.5648881</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="fu">catsim</span>(basemat, errmat)</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#&gt; [1] 0.4614073</span></span></code></pre></div>
+<p>As we might desire, the <code>catsim</code> metric judges the shift
+to be more like the original than the salt-and-pepper noise.</p>
+<p>Because this is a two-class image, you can consider using the Jaccard
+index as the metric inside it with similar results:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">catsim</span>(basemat, shiftmat, <span class="at">method =</span> <span class="st">&quot;Jaccard&quot;</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co">#&gt; [1] 0.5647088</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="fu">catsim</span>(basemat, errmat, <span class="at">method =</span> <span class="st">&quot;Jaccard&quot;</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#&gt; [1] 0.52999</span></span></code></pre></div>
 </div>
 <div id="constructing-a-multiclass-example" class="section level2">
 <h2>Constructing a multiclass example</h2>
-<p>To demonstrate how it works, first we construct a simple multicategory image and blow it up to a larger size. The grid lines are added for reference. This is our “ground truth” image.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a></span>
-<span id="cb5-2"><a href="#cb5-2"></a>multfactor &lt;-<span class="st"> </span><span class="dv">20</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>onesmat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span>, multfactor, multfactor)</span>
-<span id="cb5-4"><a href="#cb5-4"></a>exmat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">12</span>)</span>
-<span id="cb5-5"><a href="#cb5-5"></a>exmat[<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>, <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">10</span>)] &lt;-<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a>exmat[<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>, <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">8</span>)] &lt;-<span class="st"> </span><span class="dv">2</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a>exmat[<span class="dv">5</span><span class="op">:</span><span class="dv">7</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">10</span>] &lt;-<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a>exmat[<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>, <span class="kw">c</span>(<span class="dv">6</span>)] &lt;-<span class="st"> </span><span class="dv">3</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="kw">par</span>( <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="kw">image</span>(exmat[<span class="dv">11</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">11</span>], <span class="dt">xaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">yaxt =</span> <span class="st">&quot;n&quot;</span>)</span>
-<span id="cb5-11"><a href="#cb5-11"></a>  <span class="kw">grid</span>(<span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="data:image/png;base64,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" /><!-- --></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>bigmat &lt;-<span class="st"> </span>exmat <span class="op">%x%</span><span class="st"> </span>onesmat</span></code></pre></div>
-<p>Next, we construct two distorted versions. The first simply shifts the central portion of the image over six pixels. Then, we compute the percentage of pixels that disagree with the baseline image and create a second distorted image by adding salt-and-pepper noise at that rate. Again, grid lines are added only for reference.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">set.seed</span>(<span class="dv">20200323</span>)</span>
-<span id="cb7-2"><a href="#cb7-2"></a>shift  &lt;-<span class="st">  </span><span class="dv">6</span> <span class="co"># we are shifting horizontally by six pixels</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>basemat &lt;-<span class="st"> </span>bigmat[<span class="dv">1</span><span class="op">:</span>(<span class="dv">11</span> <span class="op">*</span><span class="st"> </span>multfactor), <span class="dv">1</span><span class="op">:</span>(<span class="dv">11</span> <span class="op">*</span><span class="st"> </span>multfactor)]</span>
-<span id="cb7-4"><a href="#cb7-4"></a>shiftmat &lt;-<span class="st"> </span>bigmat[(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>shift) <span class="op">:</span><span class="st"> </span>(<span class="dv">11</span> <span class="op">*</span><span class="st"> </span>multfactor <span class="op">+</span><span class="st"> </span>shift), <span class="dv">1</span><span class="op">:</span><span class="st"> </span>(<span class="dv">11</span> <span class="op">*</span><span class="st"> </span>multfactor)]</span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="co">### Here we have shifted the matrix slightly</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="kw">image</span>(shiftmat, <span class="dt">xaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">yaxt =</span> <span class="st">&quot;n&quot;</span>)</span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="kw">grid</span>(<span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</span>
-<span id="cb7-9"><a href="#cb7-9"></a></span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="co">### computing the error rate</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a>acc  &lt;-<span class="st">  </span><span class="kw">mean</span>(basemat <span class="op">==</span><span class="st"> </span>shiftmat)</span>
-<span id="cb7-12"><a href="#cb7-12"></a>errmat &lt;-<span class="st"> </span>(<span class="kw">matrix</span>(<span class="kw">sample</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">121</span> <span class="op">*</span><span class="st"> </span>(multfactor<span class="op">^</span><span class="dv">2</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb7-13"><a href="#cb7-13"></a>                         <span class="dt">prob =</span> <span class="kw">c</span>(acc, <span class="kw">rep</span>((<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>acc) <span class="op">/</span><span class="st"> </span><span class="dv">3</span>, <span class="dv">3</span>))),</span>
-<span id="cb7-14"><a href="#cb7-14"></a>                        (<span class="dv">11</span> <span class="op">*</span><span class="st"> </span>multfactor), (<span class="dv">11</span> <span class="op">*</span><span class="st"> </span>multfactor)) <span class="op">+</span><span class="st"> </span>basemat) <span class="op">%%</span><span class="st"> </span><span class="dv">4</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a></span>
-<span id="cb7-16"><a href="#cb7-16"></a><span class="co">### here we have made an image that matches its accuracy with salt and pepper noise</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a><span class="kw">image</span>(errmat, <span class="dt">xaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">yaxt =</span> <span class="st">&quot;n&quot;</span>)</span>
-<span id="cb7-18"><a href="#cb7-18"></a><span class="kw">grid</span>(<span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="data:image/png;base64,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" /><!-- --></p>
-<p>Depending on your preferences, you may have reason to prefer one or the other, but, arguably, the shifted version is in some sense better, even though their pixelwise agreement is approximately the same.</p>
+<p>To demonstrate how it works, first we construct a simple
+multicategory image and blow it up to a larger size. The grid lines are
+added for reference. This is our “ground truth” image.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>multfactor <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>onesmat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span>, multfactor, multfactor)</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>exmat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">12</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>exmat[<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">10</span>)] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>exmat[<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">8</span>)] <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>exmat[<span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>, <span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>exmat[<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">c</span>(<span class="dv">6</span>)] <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="fu">par</span>( <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="fu">image</span>(exmat[<span class="dv">11</span><span class="sc">:</span><span class="dv">1</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>], <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="at">yaxt =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>  <span class="fu">grid</span>(<span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>bigmat <span class="ot">&lt;-</span> exmat <span class="sc">%x%</span> onesmat</span></code></pre></div>
+<p>Next, we construct two distorted versions. The first simply shifts
+the central portion of the image over six pixels. Then, we compute the
+percentage of pixels that disagree with the baseline image and create a
+second distorted image by adding salt-and-pepper noise at that rate.
+Again, grid lines are added only for reference.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20200323</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>shift  <span class="ot">&lt;-</span>  <span class="dv">6</span> <span class="co"># we are shifting horizontally by six pixels</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>basemat <span class="ot">&lt;-</span> bigmat[<span class="dv">1</span><span class="sc">:</span>(<span class="dv">11</span> <span class="sc">*</span> multfactor), <span class="dv">1</span><span class="sc">:</span>(<span class="dv">11</span> <span class="sc">*</span> multfactor)]</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>shiftmat <span class="ot">&lt;-</span> bigmat[(<span class="dv">1</span> <span class="sc">+</span> shift) <span class="sc">:</span> (<span class="dv">11</span> <span class="sc">*</span> multfactor <span class="sc">+</span> shift), <span class="dv">1</span><span class="sc">:</span> (<span class="dv">11</span> <span class="sc">*</span> multfactor)]</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="do">### Here we have shifted the matrix slightly</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="fu">image</span>(shiftmat, <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="at">yaxt =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="fu">grid</span>(<span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="do">### computing the error rate</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>acc  <span class="ot">&lt;-</span>  <span class="fu">mean</span>(basemat <span class="sc">==</span> shiftmat)</span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>errmat <span class="ot">&lt;-</span> (<span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">121</span> <span class="sc">*</span> (multfactor<span class="sc">^</span><span class="dv">2</span>), <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>                         <span class="at">prob =</span> <span class="fu">c</span>(acc, <span class="fu">rep</span>((<span class="dv">1</span> <span class="sc">-</span> acc) <span class="sc">/</span> <span class="dv">3</span>, <span class="dv">3</span>))),</span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>                        (<span class="dv">11</span> <span class="sc">*</span> multfactor), (<span class="dv">11</span> <span class="sc">*</span> multfactor)) <span class="sc">+</span> basemat) <span class="sc">%%</span> <span class="dv">4</span></span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="do">### here we have made an image that matches its accuracy with salt and pepper noise</span></span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="fu">image</span>(errmat, <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="at">yaxt =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="fu">grid</span>(<span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>Depending on your preferences, you may have reason to prefer one or
+the other, but, arguably, the shifted version is in some sense better,
+even though their pixelwise agreement is approximately the same.</p>
 </div>
 <div id="computing-image-similarity" class="section level2">
 <h2>Computing Image Similarity</h2>
-<p>If we take only one level of <code>catsim</code>, we get the following results when comparing to the initial matrix:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">library</span>(catsim)</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="co">### comparing base to shifted</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="kw">catsim</span>(basemat, shiftmat, <span class="dt">weights =</span> <span class="dv">1</span>)</span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co">#&gt; [1] 0.6860161</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="co">### comparing base to salt-and-pepper</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="kw">catsim</span>(basemat, errmat, <span class="dt">weights =</span> <span class="dv">1</span>)</span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="co">#&gt; [1] 0.105825</span></span>
-<span id="cb8-9"><a href="#cb8-9"></a></span>
-<span id="cb8-10"><a href="#cb8-10"></a><span class="co">### looking at accuracy</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="kw">mean</span>(basemat <span class="op">==</span><span class="st"> </span>shiftmat)</span>
-<span id="cb8-12"><a href="#cb8-12"></a><span class="co">#&gt; [1] 0.9355372</span></span>
-<span id="cb8-13"><a href="#cb8-13"></a><span class="kw">mean</span>(basemat <span class="op">==</span><span class="st"> </span>errmat)</span>
-<span id="cb8-14"><a href="#cb8-14"></a><span class="co">#&gt; [1] 0.9364463</span></span></code></pre></div>
-<p>This captures the similarity between the original image and the shifted image, but is too “critical” of the salt-and-pepper error. We can correct this by looking at the image on multiple scales: we downsample by a factor of 2 and then compute the index for that layer, then repeat, and combine the layers at the end into one measure. By default, we use 5 layers of downsampling, but this can be specified based on your application and the size of the image. Downsampling should remove and smooth out a light level of salt-and-pepper error.</p>
-<p>With five levels, the difference is smaller, but still prefers the shifted version over the salt and pepper error.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">catsim</span>(basemat, shiftmat, <span class="dt">weights =</span> <span class="kw">rep</span>(.<span class="dv">2</span>, <span class="dv">5</span>))</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="co">#&gt; [1] 0.7525661</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="co">### comparing base to salt-and-pepper</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="kw">catsim</span>(basemat, errmat, <span class="dt">weights =</span> <span class="kw">rep</span>(.<span class="dv">2</span>, <span class="dv">5</span>))</span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#&gt; [1] 0.5724128</span></span></code></pre></div>
+<p>If we take only one level of <code>catsim</code>, we get the
+following results when comparing to the initial matrix:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">library</span>(catsim)</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="do">### comparing base to shifted</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">catsim</span>(basemat, shiftmat, <span class="at">weights =</span> <span class="dv">1</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co">#&gt; [1] 0.6860161</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="do">### comparing base to salt-and-pepper</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="fu">catsim</span>(basemat, errmat, <span class="at">weights =</span> <span class="dv">1</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co">#&gt; [1] 0.105825</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="do">### looking at accuracy</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="fu">mean</span>(basemat <span class="sc">==</span> shiftmat)</span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co">#&gt; [1] 0.9355372</span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="fu">mean</span>(basemat <span class="sc">==</span> errmat)</span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co">#&gt; [1] 0.9364463</span></span></code></pre></div>
+<p>This captures the similarity between the original image and the
+shifted image, but is too “critical” of the salt-and-pepper error. We
+can correct this by looking at the image on multiple scales: we
+downsample by a factor of 2 and then compute the index for that layer,
+then repeat, and combine the layers at the end into one measure. By
+default, we use 5 layers of downsampling, but this can be specified
+based on your application and the size of the image. Downsampling should
+remove and smooth out a light level of salt-and-pepper error.</p>
+<p>With five levels, the difference is smaller, but still prefers the
+shifted version over the salt and pepper error.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">catsim</span>(basemat, shiftmat, <span class="at">weights =</span> <span class="fu">rep</span>(.<span class="dv">2</span>, <span class="dv">5</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="co">#&gt; [1] 0.7525661</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="do">### comparing base to salt-and-pepper</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="fu">catsim</span>(basemat, errmat, <span class="at">weights =</span> <span class="fu">rep</span>(.<span class="dv">2</span>, <span class="dv">5</span>))</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co">#&gt; [1] 0.5724128</span></span></code></pre></div>
 </div>
 <div id="catsim-options" class="section level2">
 <h2>CatSIM options</h2>
-<p>By default, CatSIM uses <a href="https://en.wikipedia.org/wiki/Cohen&#39;s_kappa">Cohen’s kappa (<span class="math inline">\(\kappa\)</span>)</a> as the similarity comparison for the images. This measures agreement between the classes with and adjustment for the probability of chance agreement. However, depending on the application, a different comparison might make sense. The following options are available (using the <code>method</code> argument):</p>
+<p>By default, CatSIM uses <a href="https://en.wikipedia.org/wiki/Cohen&#39;s_kappa">Cohen’s kappa
+(<span class="math inline">\(\kappa\)</span>)</a> as the similarity
+comparison for the images. This measures agreement between the classes
+with and adjustment for the probability of chance agreement. However,
+depending on the application, a different comparison might make sense.
+The following options are available (using the <code>method</code>
+argument):</p>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Jaccard_index">Jaccard index</a>, suitable for binary images where presence of one class is important (for instance, fMRI activation maps), with <code>method=&quot;Jaccard&quot;</code>.</li>
-<li><a href="https://en.wikipedia.org/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient">Dice index</a>, which is similar to the Jaccard index, with <code>method=&quot;Dice&quot;</code>.</li>
-<li><a href="https://en.wikipedia.org/wiki/Rand_index">Rand index</a>, a similarity metric for comparing clusterings based on whether pairs of points are in the same group, with <code>method=&quot;Rand&quot;</code>.</li>
-<li><a href="https://en.wikipedia.org/wiki/Rand_index#Adjusted_Rand_index">Adjusted Rand index</a>, a modification of the Rand index which corrects for the probability of chance agreements, with <code>method =&quot;AdjRand&quot;</code> or <code>ARI</code>.</li>
-<li>Accuracy, or pixel-wise agreement, which is simply <code>(# pixels agreeing)/(# pixels)</code>, with <code>method=&quot;accuracy&quot;</code>.</li>
-<li><a href="https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-clustering-1.html">Normalized mutual information</a>, a information theory similarity metric based on the Kullback-Liebler divergence between the two distributions, with <code>method = &quot;NMI&quot;</code> or <code>MI</code>.</li>
-<li><a href="https://en.wikipedia.org/wiki/Adjusted_mutual_information">Adjusted mutual information</a>, a correction to the mutual information to account for the probability of chance agreements, with <code>method = &quot;AMI&quot;</code>.</li>
+<li><a href="https://en.wikipedia.org/wiki/Jaccard_index">Jaccard
+index</a>, suitable for binary images where presence of one class is
+important (for instance, fMRI activation maps), with
+<code>method=&quot;Jaccard&quot;</code>.</li>
+<li><a href="https://en.wikipedia.org/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient">Dice
+index</a>, which is similar to the Jaccard index, with
+<code>method=&quot;Dice&quot;</code>.</li>
+<li><a href="https://en.wikipedia.org/wiki/Rand_index">Rand index</a>, a
+similarity metric for comparing clusterings based on whether pairs of
+points are in the same group, with <code>method=&quot;Rand&quot;</code>.</li>
+<li><a href="https://en.wikipedia.org/wiki/Rand_index#Adjusted_Rand_index">Adjusted
+Rand index</a>, a modification of the Rand index which corrects for the
+probability of chance agreements, with <code>method =&quot;AdjRand&quot;</code> or
+<code>ARI</code>.</li>
+<li>Accuracy, or pixel-wise agreement, which is simply
+<code>(# pixels agreeing)/(# pixels)</code>, with
+<code>method=&quot;accuracy&quot;</code>.</li>
+<li><a href="https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-clustering-1.html">Normalized
+mutual information</a>, a information theory similarity metric based on
+the Kullback-Liebler divergence between the two distributions, with
+<code>method = &quot;NMI&quot;</code> or <code>MI</code>.</li>
+<li><a href="https://en.wikipedia.org/wiki/Adjusted_mutual_information">Adjusted
+mutual information</a>, a correction to the mutual information to
+account for the probability of chance agreements, with
+<code>method = &quot;AMI&quot;</code>.</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">catsim</span>(basemat, shiftmat, <span class="dt">weights =</span> <span class="kw">rep</span>(.<span class="dv">5</span>,<span class="dv">2</span>), <span class="dt">method=</span><span class="st">&quot;Rand&quot;</span>)</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="co">#&gt; [1] 0.7972214</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="kw">catsim</span>(basemat, shiftmat, <span class="dt">weights =</span> <span class="kw">rep</span>(.<span class="dv">5</span>,<span class="dv">2</span>), <span class="dt">method=</span><span class="st">&quot;NMI&quot;</span>)</span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="co">#&gt; [1] 0.2701349</span></span></code></pre></div>
-<p>The window size can also be adjusted. It should be large enough to capture the scale of the features that are relevant in the analysis. In this example, a portion of the image was displaced by 6 pixels. Too large of a window may average out that difference too much while too small may miss the similarity between the images. Here is a comparison between the shifted image and the salt-and-pepper noise at different window sizes.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">catsim</span>(basemat, shiftmat, <span class="dt">weights =</span> <span class="kw">rep</span>(<span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">3</span>, <span class="dv">3</span>), <span class="dt">window =</span> <span class="dv">20</span>)</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="co">#&gt; [1] 0.7878624</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="kw">catsim</span>(basemat, shiftmat, <span class="dt">weights =</span> <span class="kw">rep</span>(<span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">3</span>, <span class="dv">3</span>), <span class="dt">window =</span> <span class="dv">5</span>)</span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="co">#&gt; [1] 0.7424498</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="kw">catsim</span>(basemat, errmat, <span class="dt">weights =</span> <span class="kw">rep</span>(<span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">3</span>, <span class="dv">3</span>), <span class="dt">window =</span> <span class="dv">20</span>)</span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="co">#&gt; [1] 0.6766773</span></span>
-<span id="cb11-7"><a href="#cb11-7"></a><span class="kw">catsim</span>(basemat, errmat, <span class="dt">weights =</span> <span class="kw">rep</span>(<span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">3</span>, <span class="dv">3</span>), <span class="dt">window =</span> <span class="dv">5</span>)</span>
-<span id="cb11-8"><a href="#cb11-8"></a><span class="co">#&gt; [1] 0.441829</span></span></code></pre></div>
-<p>The number of levels CatSIM uses can be set by specifying either the <code>levels</code> argument or passing a vector to <code>weights</code>, where the length of the vector dictates how many levels of downsampling will be performed. By default, if the number of levels are specified without specifying the weights, the weights are set to be equal across levels and add up to 1. Specifying <code>weights = rep(1/3,3)</code> is the same as specifying <code>levels = 3</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">catsim</span>(basemat, shiftmat, <span class="at">weights =</span> <span class="fu">rep</span>(.<span class="dv">5</span>,<span class="dv">2</span>), <span class="at">method=</span><span class="st">&quot;Rand&quot;</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="co">#&gt; [1] 0.7972214</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="fu">catsim</span>(basemat, shiftmat, <span class="at">weights =</span> <span class="fu">rep</span>(.<span class="dv">5</span>,<span class="dv">2</span>), <span class="at">method=</span><span class="st">&quot;NMI&quot;</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co">#&gt; [1] 0.2701349</span></span></code></pre></div>
+<p>The window size can also be adjusted. It should be large enough to
+capture the scale of the features that are relevant in the analysis. In
+this example, a portion of the image was displaced by 6 pixels. Too
+large of a window may average out that difference too much while too
+small may miss the similarity between the images. Here is a comparison
+between the shifted image and the salt-and-pepper noise at different
+window sizes.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">catsim</span>(basemat, shiftmat, <span class="at">weights =</span> <span class="fu">rep</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">3</span>, <span class="dv">3</span>), <span class="at">window =</span> <span class="dv">20</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="co">#&gt; [1] 0.7878624</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="fu">catsim</span>(basemat, shiftmat, <span class="at">weights =</span> <span class="fu">rep</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">3</span>, <span class="dv">3</span>), <span class="at">window =</span> <span class="dv">5</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co">#&gt; [1] 0.7424498</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="fu">catsim</span>(basemat, errmat, <span class="at">weights =</span> <span class="fu">rep</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">3</span>, <span class="dv">3</span>), <span class="at">window =</span> <span class="dv">20</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co">#&gt; [1] 0.6766773</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="fu">catsim</span>(basemat, errmat, <span class="at">weights =</span> <span class="fu">rep</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">3</span>, <span class="dv">3</span>), <span class="at">window =</span> <span class="dv">5</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co">#&gt; [1] 0.441829</span></span></code></pre></div>
+<p>The number of levels CatSIM uses can be set by specifying either the
+<code>levels</code> argument or passing a vector to
+<code>weights</code>, where the length of the vector dictates how many
+levels of downsampling will be performed. By default, if the number of
+levels are specified without specifying the weights, the weights are set
+to be equal across levels and add up to 1. Specifying
+<code>weights = rep(1/3,3)</code> is the same as specifying
+<code>levels = 3</code>.</p>
 </div>
 <div id="advanced-functionality" class="section level2">
 <h2>Advanced Functionality</h2>
-<p>The <code>catsim()</code> function works for both 2-D and 3-D images. It is a wrapper for other functions which give more control over the various options. On a 2-D image, it is calling <code>catmssim_2d()</code> and on a 3-D image it is calling either <code>catmssim_3d_cube()</code> or <code>catmssim_3d_slice()</code>, which treats the image as either an isotropic 3-D image or a stack of 2-D slices.</p>
-<p>In images with different properties across dimensions, the sliding window used to assess the similarity might not need to be square. This can be specified by passing a vector to the <code>window</code> argument. In the provided examples, this is not necessary, but some sources of images may not be isotropic. Alternatively, the image may be elongated in one direction and narrow in another. This makes it possible to accommodate these differences.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">catsim</span>(basemat, shiftmat, <span class="dt">weights =</span> <span class="kw">rep</span>(.<span class="dv">2</span>, <span class="dv">5</span>), <span class="dt">window =</span> <span class="kw">c</span>(<span class="dv">11</span>, <span class="dv">5</span>))</span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="co">#&gt; [1] 0.7299104</span></span></code></pre></div>
+<p>The <code>catsim()</code> function works for both 2-D and 3-D images.
+It is a wrapper for other functions which give more control over the
+various options. On a 2-D image, it is calling
+<code>catmssim_2d()</code> and on a 3-D image it is calling either
+<code>catmssim_3d_cube()</code> or <code>catmssim_3d_slice()</code>,
+which treats the image as either an isotropic 3-D image or a stack of
+2-D slices.</p>
+<p>In images with different properties across dimensions, the sliding
+window used to assess the similarity might not need to be square. This
+can be specified by passing a vector to the <code>window</code>
+argument. In the provided examples, this is not necessary, but some
+sources of images may not be isotropic. Alternatively, the image may be
+elongated in one direction and narrow in another. This makes it possible
+to accommodate these differences.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">catsim</span>(basemat, shiftmat, <span class="at">weights =</span> <span class="fu">rep</span>(.<span class="dv">2</span>, <span class="dv">5</span>), <span class="at">window =</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">5</span>))</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="co">#&gt; [1] 0.7299104</span></span></code></pre></div>
 </div>
 <div id="references" class="section level2 unnumbered">
-<h2>References</h2>
-<div id="refs" class="references">
-<div id="ref-besag1986statistical">
-<p>Besag, Julian. 1986. “On the Statistical Analysis of Dirty Pictures.” <em>Journal of the Royal Statistical Society: Series B (Methodological)</em> 48 (3): 259–79. <a href="https://doi.org/10.1111/j.2517-6161.1986.tb01412.x">https://doi.org/10.1111/j.2517-6161.1986.tb01412.x</a>.</p>
+<h2 class="unnumbered">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-besag1986statistical" class="csl-entry">
+Besag, Julian. 1986. <span>“On the Statistical Analysis of Dirty
+Pictures.”</span> <em>Journal of the Royal Statistical Society: Series B
+(Methodological)</em> 48 (3): 259–79. <a href="https://doi.org/10.1111/j.2517-6161.1986.tb01412.x">https://doi.org/10.1111/j.2517-6161.1986.tb01412.x</a>.
 </div>
 </div>
 </div>
